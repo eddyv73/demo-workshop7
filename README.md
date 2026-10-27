@@ -1,7 +1,9 @@
 # Productos API
 
 API web mínima en C# con .NET 10. Devuelve tres productos de ejemplo en memoria.
+## Descripción del proyecto
 
+Este proyecto está pensado para ejemplificar cómo funciona GitHub Copilot.
 ## Ejecutar
 
 ```bash
