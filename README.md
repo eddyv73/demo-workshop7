@@ -3,7 +3,7 @@
 API web mínima en C# con .NET 10. Devuelve tres productos de ejemplo en memoria.
 #description de cod , de este proyecto
 
-Este pryeccto esta pens ado parha ejemplificar como funciona , copitlot.
+Este proyecto está pensado para ejemplificar cómo funciona GitHub Copilot.
 ## Ejecutar
 
 ```bash
