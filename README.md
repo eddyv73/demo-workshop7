@@ -8,7 +8,7 @@ API web mínima en C# con .NET 10. Devuelve tres productos de ejemplo en memoria
 dotnet run --project src/Productos.Api
 ```
 
-La API ofrece `GET /api/productos`, `GET /api/productos/{id}` y `GET /health`. Un producto inexistente responde con `404`.
+La API ofrece `GET /api/productos`, `GET /api/productos/{id}` y `GET /health`. El endpoint de salud responde `200` con `{"status":"Healthy"}` y un producto inexistente responde con `404`.
 
 ## Pruebas
 

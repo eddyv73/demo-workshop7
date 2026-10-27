@@ -38,6 +38,21 @@ public class ProductoEndpointsTests
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
     }
 
+    [Fact]
+    public async Task GetHealth_ReturnsHealthyStatus()
+    {
+        var (app, client) = await CreateApiAsync();
+        await using var application = app;
+        using var httpClient = client;
+
+        var response = await httpClient.GetAsync("/health");
+        var health = await response.Content.ReadFromJsonAsync<HealthResponse>();
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.NotNull(health);
+        Assert.Equal("Healthy", health.Status);
+    }
+
     private static async Task<(WebApplication App, HttpClient Client)> CreateApiAsync()
     {
         var builder = WebApplication.CreateBuilder();
@@ -46,10 +61,13 @@ public class ProductoEndpointsTests
 
         var app = builder.Build();
         app.MapProductoEndpoints();
+        app.MapHealthEndpoints();
         await app.StartAsync();
 
         var server = app.Services.GetRequiredService<IServer>();
         var address = server.Features.Get<IServerAddressesFeature>()!.Addresses.Single();
         return (app, new HttpClient { BaseAddress = new Uri(address) });
     }
+
+    private sealed record HealthResponse(string Status);
 }
